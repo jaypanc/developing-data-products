@@ -1,0 +1,46 @@
+---
+title: "Developing Data Products- week 3"
+author: "Jay Panchal"
+date: "17/11/2020"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE, comment=" "}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## indroduction
+
+-here I have used `plotly` package for plot and `gapminder` for dataset.
+```{r,comment=" ",warning=FALSE}
+library(gapminder)
+head(gapminder)
+
+```
+
+
+
+## plot of gdpPercap v/s lifeExp
+
+
+```{r,warning=FALSE,message=FALSE, fig.align='center'}
+
+library(plotly)
+library(gapminder)
+
+ plot_ly(
+  gapminder,
+  x=~gdpPercap,
+  y=~lifeExp,
+  size=~pop,
+  color=~continent,
+  text=~country,
+  frame = ~year,
+  hoverinfo="text",
+  type="scatter",
+  mode="markers"
+  ) %>% layout(xaxis=list(type="log"))
+
+
+
+```
