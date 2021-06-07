@@ -1,0 +1,63 @@
+---
+title: "week4 presentation"
+author: "Jay Panchal"
+date: "18/11/2020"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Introduction
+
+this application uses `gapminder`and `plotly` package.it shows a plot 
+of GDP per capital v/s life expansion.you can select range of year and
+visulize the plot.You can get mean,minimum and maximum gdp.
+
+
+
+
+
+## ui.r and server.r
+
+here are the links for shinyapps.io and github for ui.r and server.r files
+
+-shinyapps.io :<https://jaypanchal.shinyapps.io/week4project/?_ga=2.269205624.866543514.1605691694-26869012.1605691694>
+
+-github:<https://github.com/jaypanc/week4-developing-data-products.git>
+
+
+## dataset information
+
+Here gapminder dataset is taken.It has six features:country,continent,year,
+life expansion,population,gdpPercap.
+year starts from 1952 to 2007 with steps of 5 years.
+
+```{r,warning=FALSE,comment=" "}
+library(gapminder)
+head(gapminder)
+
+```
+## plot
+
+```{r,warning=FALSE,message=F,fig.align='center'}
+library(plotly)
+library(dplyr)
+plot_ly(
+            data=gapminder,
+            x=~gdpPercap,
+            y=~lifeExp,
+            size = ~pop,
+            color = ~continent,
+            frame=~year,
+            text=~country,
+            hoverinfo="text",
+            type="scatter",
+            mode="markers"
+            )%>%
+              layout(xaxis=list(type="log"))
+
+
+
+```
